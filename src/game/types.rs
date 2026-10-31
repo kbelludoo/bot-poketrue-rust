@@ -10,9 +10,11 @@ pub struct AccountConfig {
     pub credentials: GameCredentials,
     #[serde(default)]
     pub settings: GameSettings,
+    #[serde(rename = "bindIP", default)]
+    pub bind_ip: Option<String>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize, Default)]
 pub struct GameCredentials {
     #[serde(default)]
     pub token: String,
@@ -26,26 +28,32 @@ pub struct GameCredentials {
 
 #[derive(Debug, Clone, Serialize, Deserialize, Default)]
 pub struct GameSettings {
-    #[serde(default)]
+    #[serde(rename = "huntTarget", alias = "hunt_target", default)]
     pub hunt_target: String,
-    #[serde(default = "default_true")]
+    #[serde(rename = "autoHunt", alias = "auto_hunt", default = "default_true")]
     pub auto_hunt: bool,
-    #[serde(default = "default_true")]
+    #[serde(rename = "autoSell", alias = "auto_sell", default = "default_true")]
     pub auto_sell: bool,
-    #[serde(default = "default_true")]
+    #[serde(rename = "autoHeal", alias = "auto_heal", default = "default_true")]
     pub auto_heal: bool,
-    #[serde(default = "default_true")]
+    #[serde(rename = "autoDaily", alias = "auto_daily", default = "default_true")]
     pub auto_daily: bool,
-    #[serde(default = "default_true")]
+    #[serde(rename = "autoCatch", alias = "auto_catch", default = "default_true")]
     pub auto_catch: bool,
-    #[serde(default = "default_true")]
+    #[serde(rename = "autoTreino", alias = "auto_treino", default = "default_true")]
     pub auto_treino: bool,
-    #[serde(default = "default_true")]
+    #[serde(rename = "autoEquip", alias = "auto_equip", default = "default_true")]
+    pub auto_equip: bool,
+    #[serde(rename = "autoEvo", alias = "auto_evo", default = "default_true")]
     pub auto_evo: bool,
-    #[serde(default = "default_true")]
+    #[serde(rename = "autoBoss", alias = "auto_boss", default = "default_true")]
     pub auto_boss: bool,
-    #[serde(default = "default_true")]
+    #[serde(rename = "focusBestiary", alias = "focus_bestiary", default = "default_true")]
     pub focus_bestiary: bool,
+    #[serde(rename = "ballType", alias = "ball_type", default)]
+    pub ball_type: Option<String>,
+    #[serde(rename = "healThreshold", alias = "heal_threshold", default)]
+    pub heal_threshold: Option<f64>,
 }
 
 fn default_true() -> bool {
